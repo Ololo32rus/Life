@@ -10,28 +10,25 @@ namespace Life
     {
         private int x, y;
         private ConsoleColor color;
-        private int speed;
         private char look;
         private int hp;
-        private Random rnd;
-
+        private int gender;
 
         public Cell()
         {
             x = y = 0;
             color = ConsoleColor.Red;
-            speed = 1;
             look = '*';
             hp = 100;
         }
 
-        public Cell(int x, int y, ConsoleColor color, int speed, char look, int hp)
+        public Cell(int x, int y, int hp, int gender)
         {
             this.x = x;
             this.y = y;
-            this.color = color;
-            this.speed = speed;
-            this.look = look;
+            this.gender = gender;
+            this.color = gender == 0 ? ConsoleColor.Red : ConsoleColor.Blue;
+            this.look = gender == 0 ? '@' : '$';
             this.hp = hp;
         }
 
@@ -42,23 +39,49 @@ namespace Life
             Console.Write(look);
         }
 
-        public void Move()
+        public int Move()
         {
-            x += speed;
-            y += speed;
+            Random rnd = new Random();
+            int move = rnd.Next(0, 3 + 1);
+
+            switch (move)
+            {
+                case 0:
+                    {
+                        this.Y++;
+                        break;
+                    }
+                case 1:
+                    {
+                        this.Y--;
+                        break;
+                    }
+                case 2:
+                    {
+                        this.X++;
+                        break;
+                    }
+                case 3:
+                    {
+                        this.Y++;
+                        break;
+                    }
+            }
+            return move;
         }
 
-       /* public int CurrentMoveX()
-          { 
-          int currentMoveX = rnd.Next(-1, 1 + 1);
-              return currentMoveX;
-          }
-          public int CurrentMoveY()
-          {
-              int currentMoveY = rnd.Next(-1, 1 + 1);
-              return currentMoveY;
-          }
-       */
+
+        /* public int CurrentMoveX()
+           { 
+           int currentMoveX = rnd.Next(-1, 1 + 1);
+               return currentMoveX;
+           }
+           public int CurrentMoveY()
+           {
+               int currentMoveY = rnd.Next(-1, 1 + 1);
+               return currentMoveY;
+           }
+        */
         public int Y
         {
             set { y = value; }

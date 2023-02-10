@@ -34,10 +34,8 @@ namespace Life
                 cells[i] = new Life.Cell(
                 rnd.Next(minX, maxX + 1),
                 rnd.Next(minY, maxY + 1),
-                (ConsoleColor)rnd.Next(10,11+1),
-                rnd.Next(-1, 1 + 1),
-                looks[rnd.Next(0, looks.Length)],
-                rnd.Next(1, 100 + 1)
+                rnd.Next(1,50),
+                rnd.Next(0,1+1)
                 );
             }
         }
@@ -72,6 +70,20 @@ namespace Life
                 }
             }
         }
+       /* private void FightCell(int X, int Y, int gender)
+        {
+            for (int i = 0; i < X; i++)
+            {
+                for (int j = 0; j < Y; j++)
+                {
+                    if (i == cells[i].X && j == cells[i].Y && gender == 0)
+                    {
+                        cells[0] -= cells[1];
+                    }
+                }
+            }
+
+        }*/
 
         public void Run()
         {
